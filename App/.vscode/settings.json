@@ -1,0 +1,16 @@
+{
+    "al.codeAnalyzers": [
+        "${CodeCop}",
+        "${UICop}"
+    ],
+    "al.enableCodeAnalysis": true,
+    "al.ruleSetPath": "./.vscode/MJC.RuleSet.json",
+    //"CRS.ObjectNamePrefix": "MJC",
+    "CRS.RemovePrefixFromFilename": true,
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectType>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectType>Ext.al",
+    "CRS.OnSaveAlFileAction": "Rename",
+    "CRS.DisableDefaultAlSnippets": true,
+    "CRS.AlSubFolderName": "src",
+}

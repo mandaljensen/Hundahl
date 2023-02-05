@@ -1,0 +1,32 @@
+{
+  "id": "FILL THIS OUT",
+  "name": "FILL THIS OUT TestApp",
+  "publisher": "RelateIT A/S",
+  "brief": "",
+  "description": "FILL THIS OUT",
+  "version": "1.0.0.0",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "https://www.relateit.dk",
+  "logo": "./res/logo.png",
+  "capabilities": [],
+  "dependencies": [
+    {
+      "appId": "ID OF THE APP",
+      "name": "NAME OF THE APP",
+      "publisher": "RelateIT A/S",
+      "version": "1.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "13.0.0.0",
+  "application": "13.0.0.0",
+  "idRange": {
+    "from": FILL THIS OUT,
+    "to": FILL THIS OUT
+  },
+  "runtime": "2.4",
+  "target": "Extension",
+  "showMyCode": true
+}

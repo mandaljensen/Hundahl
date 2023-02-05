@@ -1,0 +1,16 @@
+{
+    "name": "MJC ruleset",
+    "description": "These rules must be respected by all the AL code written within the company.",
+    "rules": [
+        {
+            "id": "AA0215",
+            "action": "Hidden",
+            "justification": "This rule has been disabled as it is enforced from BC16"
+        },
+        {
+            "id": "AA0214",
+            "action": "Hidden",
+            "justification": "This rule has been disabled as it does not make any sense"
+        }
+    ]
+}

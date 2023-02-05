@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="en-US" target-language="en-US" original="Precom Integration">
+    <body>
+      <group id="body">
+        <trans-unit id="Table 2256655909 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Precom Order Number Link - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2256655909 - Field 2156625835 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Precom Order Number Link - Field Precom No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 4063453135 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ActualEndDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ActualEndDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3417624710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ActualStartDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ActualStartDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1663961657 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ArticleNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ArticleNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3363985836 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BillingNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field BillingNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 132752440 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>CauseCode</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field CauseCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1748984985 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Command Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Command Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2088110594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ContractLastMainPeriod</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ContractLastMainPeriod - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3554244415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ContractLastPeriod</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ContractLastPeriod - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 877054120 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ContractMainPeriodStart</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ContractMainPeriodStart - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2260479339 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ContractNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ContractNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2123248049 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ContractPeriodStart</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ContractPeriodStart - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 4287182921 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>CustomerNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field CustomerNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2703452831 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleted</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Deleted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2120763714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EquipmentMileageReading</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field EquipmentMileageReading - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3628911459 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EquipmentNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field EquipmentNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3313073372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EquipmentReading</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field EquipmentReading - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 295534943 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>EquipmentUsageReading</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field EquipmentUsageReading - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3111697904 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ERPReference</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ERPReference - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1476062623 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error Text</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Error Text - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2248457887 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OrderNumber</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field OrderNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1921216049 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PlannedEndDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field PlannedEndDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1557183972 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PlannedStartDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field PlannedStartDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1585149370 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom Record ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field PreCom Record ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3635338911 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Price - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 610505626 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PrimaryResource</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field PrimaryResource - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1797992765 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process Error</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Process Error - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3052487058 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ReadingDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ReadingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 4292242041 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record ID ERP</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Record ID ERP - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3768732020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>RecordID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field RecordID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1221660829 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reference</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Reference - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2857026229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ReferenceType</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ReferenceType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1661803987 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>RepairStatus</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field RepairStatus - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1543351937 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ResponsibilityCenter</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field ResponsibilityCenter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3292908403 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>StatusID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field StatusID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 827796592 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>StorePlace</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field StorePlace - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3324095033 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Message ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Update Message ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 2138558048 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>UserID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field UserID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1131619133 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 4026995423 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDoneExternal1</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field WorkDoneExternal1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1645117978 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDoneExternal2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field WorkDoneExternal2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 1007421361 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkDoneExternal3</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field WorkDoneExternal3 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2873466242 - Field 3484112403 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WorkToDo</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Queue - Field WorkToDo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - NamedType 772562468" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose folder</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - NamedType DocumentPathFolderSelectionCaptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 846008257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default Dimension 1 Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Default Dimension 1 Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 127411004 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default Service Order Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Default Service Order Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 1364397478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Path</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Document Path - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 2512123291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Help Material Percent</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Help Material Percent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 1235186557 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Help Materials Item No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Help Materials Item No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 3974202296 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Next Inventory Update</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Next Inventory Update - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 3277469783 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom SQL Database</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field PreCom SQL Database - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 519127529 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom SQL Password</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field PreCom SQL Password - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 1947864399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom SQL Server</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field PreCom SQL Server - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 907776883 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom SQL User</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field PreCom SQL User - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 2303268078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Reg. Journal</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Time Reg. Journal - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 780502913 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Upd. Inventory Interval (min.)</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Upd. Inventory Interval (min.) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 896473411 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Update Inventory - All Items</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Update Inventory - All Items - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3441714404 - Field 3493377559 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use Precom</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table PreCom Update Setup - Field Use Precom - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - NamedType 2316870939" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table not supported!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - NamedType Text001Err</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 4249810604 - NamedType 3552886502" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is no Service Item Line on the Service Order!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportCostInfo - NamedType NoServiceItemLineErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 4249810604 - NamedType 505919222" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No line exist where negative quantity can be deducted!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportCostInfo - NamedType NegativeQtyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 4249810604 - NamedType 2298308068" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PRECOM</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportCostInfo - NamedType MarkPrecomWorkTypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 2600161586 - NamedType 3552886502" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There is no Service Item Line on the Service Order!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportItemInfo - NamedType NoServiceItemLineErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 2600161586 - NamedType 505919222" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No line exist where negative quantity can be deducted!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportItemInfo - NamedType NegativeQtyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 2600161586 - NamedType 4151252810" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item %1 does not exist!</source>
+          <note from="Developer" annotates="general" priority="2">%1 is Item No.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportItemInfo - NamedType ItemNotExistErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 3705797343 - NamedType 1324228003" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer No. not entered!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportServiceOrders - NamedType NoCustomerNoErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 3855027786 - NamedType 505919222" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No line exist where negative quantity can be deducted!</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportTimeInfo - NamedType NegativeQtyErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2256655909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Order Number Link</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Order Number Link - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2256655909 - Control 4200184881 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the No. field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Order Number Link - Control No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2256655909 - Control 2156625835 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Precom No. field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Order Number Link - Control Precom No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Update Queue</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Control 1748984985 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Command Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Control Command Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Control 1476062623 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Error Text field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Control Error Text - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Control 1797992765 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Process Error field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Control Process Error - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Control 3768732020 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the RecordID field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Control RecordID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1227919522 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Table ID field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Precom Update Queue - Control Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PreCom Update Setup</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 846008257 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Default Dimension 1 Code field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Default Dimension 1 Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 127411004 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Default Service Order Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Default Service Order Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 1364397478 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Document Path field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Document Path - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 3974202296 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Next Inventory Update field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Next Inventory Update - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 3277469783 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the PreCom SQL Database field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control PreCom SQL Database - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 519127529 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the PreCom SQL Password field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control PreCom SQL Password - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 1947864399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the PreCom SQL Server field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control PreCom SQL Server - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 907776883 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the PreCom SQL User field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control PreCom SQL User - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 2303268078 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Time Reg. Journal field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Time Reg. Journal - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 780502913 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Upd. Inventory Interval (min.) field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Upd. Inventory Interval (min.) - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Control 3493377559 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Use Precom field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Control Use Precom - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 2675496269 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Executes the Process action.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action Process - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 2675496269 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action Process - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 4107479263 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Executes the Test Database Connection action.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action TestDatabaseConnection - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 4107479263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Test Database Connection</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action TestDatabaseConnection - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 4107479263 - Method 1377591017 - NamedType 3864724520" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Connection OK</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action TestDatabaseConnection - Method OnAction - NamedType ConnectionSuccesLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 4107479263 - Method 1377591017 - NamedType 1605404282" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Connection failed with the following error:\%1</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Latest error text</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action TestDatabaseConnection - Method OnAction - NamedType ConnectionFailLbl</note>
+        </trans-unit>
+        <trans-unit id="Report 595385635 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Act. Customer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Precom Act. Customers - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 2502003604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Act. Items</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Precom Act. Items - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1866925071 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Act. Service Items</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Precom Act. Service Items - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1493829737 - Action 2778715907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 390384513">
+          <source>Send Service Order to Precom</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Service Order Quick Extension - Action SendToPrecom - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1493829737 - Action 2778715907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 390384513">
+          <source>Send to Precom</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Service Order Quick Extension - Action SendToPrecom - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2858417120 - Field 930501300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2682833765">
+          <source>Precom Line Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Service Line Ext. - Field Precom Line Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 2858417120 - Field 1980408154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2682833765">
+          <source>Precom Record ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Service Line Ext. - Field Precom Record ID - Property Caption</note>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

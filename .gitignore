@@ -1,0 +1,6 @@
+*.app
+**/launch.json
+**/Thumbs.db
+**/.alcache
+**/.altemplates
+**/rad.json

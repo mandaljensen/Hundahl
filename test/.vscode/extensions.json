@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-dynamics-smb.al",
+        "ms-azure-devops.azure-pipelines",
+        "waldo.crs-al-language-extension",
+        "heaths.vscode-guid",
+        "eamodio.gitlens"
+    ]
+}

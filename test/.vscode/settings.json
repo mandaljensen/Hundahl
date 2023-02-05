@@ -1,0 +1,13 @@
+{
+    "al.codeAnalyzers": [
+        "${PerTenantExtensionCop}",
+        "${CodeCop}",
+        "${UICop}"
+    ],
+    "al.enableCodeAnalysis": true,
+    "CRS.ObjectNamePrefix": "RIT",
+    "CRS.FileNamePattern": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
+    "CRS.OnSaveAlFileAction": "Rename",
+    "CRS.DisableDefaultAlSnippets": true,
+    "CRS.AlSubFolderName": "src"
+}
