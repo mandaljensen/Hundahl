@@ -597,7 +597,7 @@ codeunit 50502 "PreCom Update Dispatcher"
         if IsNull(SQLCommand) then
             SQLCommand := SQLCommand.SqlCommand();
         SQLCommand.Connection(SQLConnection);
-        SQLCommand.CommandText('SELECT * FROM INT_Work_Time_OUT WHERE (IntegrationHandleDate is null) AND (IntegrationText = '''') Order By IntegrationCreateDate;');
+        SQLCommand.CommandText('SELECT * FROM INT_Work_Time_OUT WHERE (IntegrationHandleDate is null) AND (IntegrationText = '''') AND (RegistrationType = -1) Order By IntegrationCreateDate;');
         SQLDataReader := SQLCommand.ExecuteReader();
         while SQLDataReader.Read() do begin
             IdText := Format(SQLDataReader.Item('Id'));
