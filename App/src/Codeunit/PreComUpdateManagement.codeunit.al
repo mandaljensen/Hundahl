@@ -1672,10 +1672,11 @@ codeunit 50501 "PreCom Update Management"
                 if not ServiceItem.Get(ServiceItemLine."Service Item No.") then
                     Clear(ServiceItem);
 
-                if Evaluate(HourReading, PreComUpdateQueue.EquipmentReading) then begin
-                    ServiceItemLine.Validate(Counter, HourReading);
-                    ServiceItemLine.Modify(true);
-                end;
+                if Evaluate(HourReading, PreComUpdateQueue.EquipmentReading) then
+                    if HourReading > 0 then begin
+                        ServiceItemLine.Validate(Counter, HourReading);
+                        ServiceItemLine.Modify(true);
+                    end;
             end;
 
             if PreComUpdateQueue.StatusID = '160' then begin
