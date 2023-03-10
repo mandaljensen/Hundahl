@@ -1,4 +1,4 @@
-report 50500 "Precom Act. Service Items"
+report 50006 "Precom Act. Service Items"
 {
     ApplicationArea = All;
     Caption = 'Precom Act. Service Items';

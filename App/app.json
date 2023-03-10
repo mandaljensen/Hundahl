@@ -4,7 +4,7 @@
   "publisher": "Mandal Jensen",
   "brief": "",
   "description": "Precom Integration",
-  "version": "14.0.3.6",
+  "version": "14.0.3.7",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -16,6 +16,10 @@
   "platform": "14.0.0.0",
   "application": "14.0.0.0",
   "idRanges": [
+    {
+      "from": 50005,
+      "to": 50008
+    },
     {
     "from": 50500,
     "to": 50510
