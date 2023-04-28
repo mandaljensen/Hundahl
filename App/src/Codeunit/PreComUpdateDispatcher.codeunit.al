@@ -190,8 +190,9 @@ codeunit 50502 "PreCom Update Dispatcher"
             PreComUpdateQueue.PrimaryResource := Format(SQLDataReader.Item('DispatcherCode'));
             PreComUpdateQueue.Reference := Format(SQLDataReader.Item('Reference'));
             PreComUpdateQueue.RepairStatus := Format(SQLDataReader.Item('RepairStatus'));
-            PreComUpdateQueue.ResponsibilityCenter := Format(SQLDataReader.Item('ResponsibilityCenter'));
+            PreComUpdateQueue.ResponsibilityCenter := Format(SQLDataReader.Item('LocationCode'));
             PreComUpdateQueue.Description := SQLDataReader.Item('K2M_OrderTitle');
+            PreComUpdateQueue.ActualStartDate := Format(SQLDataReader.Item('AccountingDate'));
             PreComUpdateQueue.Insert(false);
             Commit();
 

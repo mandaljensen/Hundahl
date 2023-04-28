@@ -1211,6 +1211,7 @@ codeunit 50501 "PreCom Update Management"
         GLSetup: Record "General Ledger Setup";
         Customer: Record Customer;
         RepairStatus: Record "Repair Status";
+        ServiceContractLine: Record "Service Contract Line";
         SQLConnection: DotNet NewSqlConnection;
         SQLCommand: DotNet NewSqlCommand;
         SQLParameter: DotNet NewSqlParameter;
@@ -1225,6 +1226,8 @@ codeunit 50501 "PreCom Update Management"
         InsertWorkDoneLines: Boolean;
         WorkToDoLineInterval: Integer;
         UseEquipmentNumber: Code[20];
+        ServiceDescriptionFilterTxt: Label 'Service|service|SERVICE';
+
     begin
         GLSetup.Get();
 
@@ -1288,6 +1291,10 @@ codeunit 50501 "PreCom Update Management"
                         ServiceHeader.Validate("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
                 end;
 
+                ImportDate := ConvertDate(PreComUpdateQueue.ActualStartDate);
+                if ImportDate <> 19000101D then
+                    ServiceHeader.Validate("Posting Date", ImportDate);
+
                 ImportDate := ConvertDate(PreComUpdateQueue.PlannedStartDate);
                 if ImportDate <> 19000101D then begin
                     if ServiceHeader."Order Date" > ImportDate then
@@ -1323,7 +1330,20 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.Validate("Responsibility Center", PreComUpdateQueue.ResponsibilityCenter);
                 ServiceHeader.Validate("Service Order (Quick)", true);
                 ServiceHeader.Validate(Description, PreComUpdateQueue.Description);
-                ServiceHeader.MODifY(TRUE);
+
+                UseEquipmentNumber := CopyStr(PreComUpdateQueue.EquipmentNumber, 1, 20);
+
+                ServiceContractLine.Reset();
+                ServiceContractLine.SetRange("Contract Type", ServiceContractLine."Contract Type"::Contract);
+                ServiceContractLine.SetRange("Service Item No.", UseEquipmentNumber);
+                ServiceContractLine.SetRange("Contract Status", ServiceContractLine."Contract Status"::Signed);
+                ServiceContractLine.SetFilter("Starting Date", '<=%1', ServiceHeader."Order Date");
+                ServiceContractLine.SetFilter("Contract Expiration Date", '>%1 | =%2', ServiceHeader."Order Date", 0D);
+                ServiceContractLine.SetFilter("Description for service order", ServiceDescriptionFilterTxt);
+                IF ServiceContractLine.FindFirst() THEN
+                    ServiceHeader."Contract No." := ServiceContractLine."Contract No.";
+
+                ServiceHeader.Modify(true);
                 ServiceHeader.Get(ServiceHeader."Document Type", ServiceHeader."No.");
 
                 ServiceItemLine.Init();
@@ -1332,7 +1352,6 @@ codeunit 50501 "PreCom Update Management"
                 ServiceItemLine.Validate("Document No.", ServiceHeader."No.");
                 ServiceItemLine.Validate("Line No.", 10000);
 
-                UseEquipmentNumber := CopyStr(PreComUpdateQueue.EquipmentNumber, 1, 20);
                 if not ServiceItem.Get(PreComUpdateQueue.EquipmentNumber) then begin
                     Clear(ServiceItem);
                     UseEquipmentNumber := '';
@@ -1449,6 +1468,12 @@ codeunit 50501 "PreCom Update Management"
                 //      if STRLEN(PreComUpdateQueue.PrimaryResource) <= 10 then
                 //        if Location.Get(PreComUpdateQueue.PrimaryResource) then
                 //          ServiceHeader.Validate("Location Code",PreComUpdateQueue.PrimaryResource);
+
+                ImportDate := ConvertDate(PreComUpdateQueue.ActualStartDate);
+                if ImportDate <> ServiceHeader."Posting Date" then begin
+                    ServiceHeader.SetHideValidationDialog(true);
+                    ServiceHeader.Validate("Posting Date", ImportDate);
+                end;
 
                 ImportDate := ConvertDate(PreComUpdateQueue.PlannedStartDate);
                 if (ImportDate <> 19000101D) AND (ServiceHeader."Finishing Date" = 0D) then begin
@@ -1684,7 +1709,7 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.Validate(Status, ServiceHeader.Status::Finished);
                 ServiceHeader.Modify(true);
 
-                //SortServiceLines(ServiceHeader);
+                SortServiceLines(ServiceHeader);
 
                 if StandardText.Get(ServiceHeader."Salesperson Code") then begin
                     ServiceLine.Reset();
@@ -1723,7 +1748,7 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.Validate(Status, ServiceHeader.Status::Finished);
                 ServiceHeader.MODifY(TRUE);
 
-                //SortServiceLines(ServiceHeader);
+                SortServiceLines(ServiceHeader);
 
                 if StandardText.Get(ServiceHeader."Salesperson Code") then begin
                     ServiceLine.Reset();
@@ -2439,6 +2464,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
+        ServiceLine.Description := '..';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -2458,6 +2484,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
+        ServiceLine.Description := '..';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -2477,6 +2504,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
+        ServiceLine.Description := '..';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -2499,6 +2527,25 @@ codeunit 50501 "PreCom Update Management"
                 ServiceLine.Insert(true);
             until (TempSaveServiceLine.Next() = 0);
 
+        ServiceLine.Init();
+        ServiceLine.Validate("Document Type", pServiceHeader."Document Type");
+        ServiceLine.Validate("Document No.", pServiceHeader."No.");
+        ServiceLine.Validate("Line No.", LineNo);
+        LineNo += 10000;
+        ServiceLine.Type := ServiceLine.Type::" ";
+        ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
+        ServiceLine.Description := '..';
+        ServiceLine.Insert(true);
+
+        TempSaveServiceLine.Reset();
+        TempSaveServiceLine.SetRange("Precom Line Type", TempSaveServiceLine."Precom Line Type"::" ");
+        if TempSaveServiceLine.FindSet(False, False) then
+            repeat
+                ServiceLine := TempSaveServiceLine;
+                ServiceLine."Line No." := LineNo;
+                LineNo += 10000;
+                ServiceLine.Insert(TRUE);
+            until (TempSaveServiceLine.Next() = 0);
     end;
 }
 

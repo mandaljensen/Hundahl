@@ -363,6 +363,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportServiceOrders - NamedType NoCustomerNoErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2633494824 - Method 3705797343 - NamedType 3211892125" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Service|service|SERVICE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportServiceOrders - NamedType ServiceDescriptionFilterTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2633494824 - Method 3855027786 - NamedType 505919222" size-unit="char" translate="yes" xml:space="preserve">
           <source>No line exist where negative quantity can be deducted!</source>
           <note from="Developer" annotates="general" priority="2"></note>
