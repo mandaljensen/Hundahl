@@ -9,7 +9,7 @@ report 50006 "Precom Act. Service Items"
     {
         dataitem(ServiceItem; "Service Item")
         {
-            RequestFilterFields = "No.";
+            RequestFilterFields = "No.", Closed;
 
             trigger OnAfterGetRecord()
             var
@@ -22,4 +22,12 @@ report 50006 "Precom Act. Service Items"
             end;
         }
     }
+
+    /*     trigger OnPreReport()
+        var
+            PrecomUpdateDispatcher: Codeunit "PreCom Update Dispatcher";
+        begin
+            PrecomUpdateDispatcher.Run();
+            CurrReport.Quit();
+        end; */
 }

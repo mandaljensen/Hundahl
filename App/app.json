@@ -4,7 +4,7 @@
   "publisher": "Mandal Jensen",
   "brief": "",
   "description": "Precom Integration",
-  "version": "14.0.3.8",
+  "version": "14.0.3.17",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -26,7 +26,7 @@
     }
   ],
   "contextSensitiveHelpUrl": "https://ab.com/help/",
-  "showMyCode": false,
+  "showMyCode": true,
   "runtime": "3.0",
   "target": "Internal",
   "features": [
