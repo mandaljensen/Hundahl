@@ -338,11 +338,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportCostInfo - NamedType NegativeQtyErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 2633494824 - Method 4249810604 - NamedType 2298308068" size-unit="char" translate="yes" xml:space="preserve">
-          <source>PRECOM</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit PreCom Update Management - Method ImportCostInfo - NamedType MarkPrecomWorkTypeLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 2633494824 - Method 2600161586 - NamedType 3552886502" size-unit="char" translate="yes" xml:space="preserve">
           <source>There is no Service Item Line on the Service Order!</source>
           <note from="Developer" annotates="general" priority="2"></note>

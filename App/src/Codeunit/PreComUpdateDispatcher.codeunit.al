@@ -338,7 +338,6 @@ codeunit 50502 "PreCom Update Dispatcher"
         SQLCommand: DotNet NewSqlCommand;
         SQLCommand2: DotNet NewSqlCommand;
         SQLDataReader: DotNet NewSqlDataReader;
-        DeleteServiceOrder: Boolean;
         IdText: Text[40];
     begin
         if IsNull(SQLConnection) then
@@ -354,56 +353,53 @@ codeunit 50502 "PreCom Update Dispatcher"
         while SQLDataReader.Read() do begin
             IdText := Format(SQLDataReader.Item('Id'));
             IdText := DelChr(IdText, '<>', '{}');
-            DeleteServiceOrder := SQLDataReader.Item('Deleted');
-            if not DeleteServiceOrder then begin
-                PreComUpdateQueue.Reset();
-                PreComUpdateQueue.LockTable(true);
-                if PreComUpdateQueue.FindLast() then;
+            PreComUpdateQueue.Reset();
+            PreComUpdateQueue.LockTable(true);
+            if PreComUpdateQueue.FindLast() then;
 
-                PreComUpdateQueue.Init();
-                PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
-                PreComUpdateQueue."Table ID" := -110;
-                PreComUpdateQueue.ERPReference := Format(SQLDataReader.Item('ExternalId'));
-                PreComUpdateQueue.ArticleNumber := Format(SQLDataReader.Item('ArticleNumber'));
-                PreComUpdateQueue.Quantity := ConvertToDecimal(Format(SQLDataReader.Item('Quantity')));
-                PreComUpdateQueue.StorePlace := SQLDataReader.Item('ResourceExternalId');
-                PreComUpdateQueue."Record ID ERP" := ConvertToInteger(Format(SQLDataReader.Item('RecordIdErp')));
-                PreComUpdateQueue."PreCom Record ID" := ConvertToInteger(Format(SQLDataReader.Item('RecordId')));
-                PreComUpdateQueue.Deleted := SQLDataReader.Item('Deleted');
-                PreComUpdateQueue.Insert(false);
-                Commit();
+            PreComUpdateQueue.Init();
+            PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
+            PreComUpdateQueue."Table ID" := -110;
+            PreComUpdateQueue.ERPReference := Format(SQLDataReader.Item('ExternalId'));
+            PreComUpdateQueue.ArticleNumber := Format(SQLDataReader.Item('ArticleNumber'));
+            PreComUpdateQueue.Quantity := ConvertToDecimal(Format(SQLDataReader.Item('Quantity')));
+            PreComUpdateQueue.StorePlace := SQLDataReader.Item('ResourceExternalId');
+            PreComUpdateQueue."Record ID ERP" := ConvertToInteger(Format(SQLDataReader.Item('RecordIdErp')));
+            PreComUpdateQueue."PreCom Record ID" := ConvertToInteger(Format(SQLDataReader.Item('RecordId')));
+            PreComUpdateQueue.Deleted := SQLDataReader.Item('Deleted');
+            PreComUpdateQueue.Insert(false);
+            Commit();
 
-                if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
-                    if IsNull(SQLConnection2) then
-                        SQLConnection2 := SQLConnection2.SqlConnection();
-                    SQLConnection2.ConnectionString(ReturnConnString());
-                    SQLConnection2.Open();
-                    if IsNull(SQLCommand2) then
-                        SQLCommand2 := SQLCommand2.SqlCommand();
-                    SQLCommand2.Connection(SQLConnection2);
-                    SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Material_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
-                    SQLCommand2.ExecuteNonQuery();
-                    Clear(SQLCommand2);
-                    SQLConnection2.Close();
-                    Clear(SQLConnection2);
-                end else begin
-                    if IsNull(SQLConnection2) then
-                        SQLConnection2 := SQLConnection2.SqlConnection();
-                    SQLConnection2.ConnectionString(ReturnConnString());
-                    SQLConnection2.Open();
-                    if IsNull(SQLCommand2) then
-                        SQLCommand2 := SQLCommand2.SqlCommand();
-                    SQLCommand2.Connection(SQLConnection2);
-                    SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Material_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
-                    SQLCommand2.ExecuteNonQuery();
-                    Clear(SQLCommand2);
-                    SQLConnection2.Close();
-                    Clear(SQLConnection2);
-                end;
-
-                PreComUpdateQueue.Delete(false);
-                Commit();
+            if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
+                if IsNull(SQLConnection2) then
+                    SQLConnection2 := SQLConnection2.SqlConnection();
+                SQLConnection2.ConnectionString(ReturnConnString());
+                SQLConnection2.Open();
+                if IsNull(SQLCommand2) then
+                    SQLCommand2 := SQLCommand2.SqlCommand();
+                SQLCommand2.Connection(SQLConnection2);
+                SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Material_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
+                SQLCommand2.ExecuteNonQuery();
+                Clear(SQLCommand2);
+                SQLConnection2.Close();
+                Clear(SQLConnection2);
+            end else begin
+                if IsNull(SQLConnection2) then
+                    SQLConnection2 := SQLConnection2.SqlConnection();
+                SQLConnection2.ConnectionString(ReturnConnString());
+                SQLConnection2.Open();
+                if IsNull(SQLCommand2) then
+                    SQLCommand2 := SQLCommand2.SqlCommand();
+                SQLCommand2.Connection(SQLConnection2);
+                SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Material_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
+                SQLCommand2.ExecuteNonQuery();
+                Clear(SQLCommand2);
+                SQLConnection2.Close();
+                Clear(SQLConnection2);
             end;
+
+            PreComUpdateQueue.Delete(false);
+            Commit();
         end;
 
         SQLDataReader.Dispose();
@@ -416,14 +412,12 @@ codeunit 50502 "PreCom Update Dispatcher"
     procedure ImportTimeInfo()
     var
         PreComUpdateQueue: Record "PreCom Update Queue";
-        //ServiceHeader: Record "Service Header";
         PreComUpdateManagement: Codeunit "PreCom Update Management";
         SQLConnection: DotNet NewSqlConnection;
         SQLConnection2: DotNet NewSqlConnection;
         SQLCommand: DotNet NewSqlCommand;
         SQLCommand2: DotNet NewSqlCommand;
         SQLDataReader: DotNet NewSqlDataReader;
-        DeleteServiceOrder: Boolean;
         IdText: Text[40];
     begin
         if IsNull(SQLConnection) then
@@ -439,54 +433,52 @@ codeunit 50502 "PreCom Update Dispatcher"
         while SQLDataReader.Read() do begin
             IdText := Format(SQLDataReader.Item('Id'));
             IdText := DelChr(IdText, '<>', '{}');
-            DeleteServiceOrder := SQLDataReader.Item('Deleted');
-            if not DeleteServiceOrder then begin
-                PreComUpdateQueue.Reset();
-                PreComUpdateQueue.LockTable(true);
-                if PreComUpdateQueue.FindLast() then;
+            PreComUpdateQueue.Reset();
+            PreComUpdateQueue.LockTable(true);
+            if PreComUpdateQueue.FindLast() then;
 
-                PreComUpdateQueue.Init();
-                PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
-                PreComUpdateQueue."Table ID" := -120;
-                PreComUpdateQueue.ERPReference := Format(SQLDataReader.Item('ExternalId'));
-                PreComUpdateQueue.Quantity := ConvertToDecimal(Format(SQLDataReader.Item('Quantity')));
-                PreComUpdateQueue.Type := Format(SQLDataReader.Item('TimeType'));
-                PreComUpdateQueue.Price := ConvertToDecimal(Format(SQLDataReader.Item('Price')));
-                PreComUpdateQueue.PrimaryResource := SQLDataReader.Item('ResourceExternalID');
-                PreComUpdateQueue.Insert(false);
-                Commit();
+            PreComUpdateQueue.Init();
+            PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
+            PreComUpdateQueue."Table ID" := -120;
+            PreComUpdateQueue.ERPReference := Format(SQLDataReader.Item('ExternalId'));
+            PreComUpdateQueue.Quantity := ConvertToDecimal(Format(SQLDataReader.Item('Quantity')));
+            PreComUpdateQueue.Type := Format(SQLDataReader.Item('TimeType'));
+            PreComUpdateQueue.Price := ConvertToDecimal(Format(SQLDataReader.Item('Price')));
+            PreComUpdateQueue.PrimaryResource := SQLDataReader.Item('ResourceExternalID');
+            PreComUpdateQueue."PreCom Record ID" := ConvertToInteger(SQLDataReader.Item('RecordId'));
+            PreComUpdateQueue.Insert(false);
+            Commit();
 
-                if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
-                    if IsNull(SQLConnection2) then
-                        SQLConnection2 := SQLConnection2.SqlConnection();
-                    SQLConnection2.ConnectionString(ReturnConnString());
-                    SQLConnection2.Open();
-                    if IsNull(SQLCommand2) then
-                        SQLCommand2 := SQLCommand2.SqlCommand();
-                    SQLCommand2.Connection(SQLConnection2);
-                    SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Time_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
-                    SQLCommand2.ExecuteNonQuery();
-                    Clear(SQLCommand2);
-                    SQLConnection2.Close();
-                    Clear(SQLConnection2);
-                end else begin
-                    if IsNull(SQLConnection2) then
-                        SQLConnection2 := SQLConnection2.SqlConnection();
-                    SQLConnection2.ConnectionString(ReturnConnString());
-                    SQLConnection2.Open();
-                    if IsNull(SQLCommand2) then
-                        SQLCommand2 := SQLCommand2.SqlCommand();
-                    SQLCommand2.Connection(SQLConnection2);
-                    SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Time_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
-                    SQLCommand2.ExecuteNonQuery();
-                    Clear(SQLCommand2);
-                    SQLConnection2.Close();
-                    Clear(SQLConnection2);
-                end;
-
-                PreComUpdateQueue.Delete(false);
-                Commit();
+            if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
+                if IsNull(SQLConnection2) then
+                    SQLConnection2 := SQLConnection2.SqlConnection();
+                SQLConnection2.ConnectionString(ReturnConnString());
+                SQLConnection2.Open();
+                if IsNull(SQLCommand2) then
+                    SQLCommand2 := SQLCommand2.SqlCommand();
+                SQLCommand2.Connection(SQLConnection2);
+                SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Time_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
+                SQLCommand2.ExecuteNonQuery();
+                Clear(SQLCommand2);
+                SQLConnection2.Close();
+                Clear(SQLConnection2);
+            end else begin
+                if IsNull(SQLConnection2) then
+                    SQLConnection2 := SQLConnection2.SqlConnection();
+                SQLConnection2.ConnectionString(ReturnConnString());
+                SQLConnection2.Open();
+                if IsNull(SQLCommand2) then
+                    SQLCommand2 := SQLCommand2.SqlCommand();
+                SQLCommand2.Connection(SQLConnection2);
+                SQLCommand2.CommandText('UPDATE INT_Order_Invoice_Time_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
+                SQLCommand2.ExecuteNonQuery();
+                Clear(SQLCommand2);
+                SQLConnection2.Close();
+                Clear(SQLConnection2);
             end;
+
+            PreComUpdateQueue.Delete(false);
+            Commit();
         end;
 
         SQLDataReader.Dispose();
