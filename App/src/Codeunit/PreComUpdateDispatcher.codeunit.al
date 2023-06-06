@@ -134,6 +134,7 @@ codeunit 50502 "PreCom Update Dispatcher"
         WorkdoneExternal: Text;
         IdText: Text[40];
         GlobalWorkToDo: Text;
+        DT: DateTime;
     begin
         if IsNull(SQLConnection) then
             SQLConnection := SQLConnection.SqlConnection();
@@ -159,7 +160,8 @@ codeunit 50502 "PreCom Update Dispatcher"
             PreComUpdateQueue.CustomerNumber := Format(SQLDataReader.Item('CustomerNumber'));
             PreComUpdateQueue.BillingNumber := Format(SQLDataReader.Item('BillingNumber'));
             PreComUpdateQueue.ERPReference := Format(SQLDataReader.Item('ExternalId'));
-            PreComUpdateQueue.PlannedStartDate := Format(SQLDataReader.Item('StartDateTime'));
+            DT := SQLDataReader.Item('StartDateTime');
+            PreComUpdateQueue.PlannedStartDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
             PreComUpdateQueue.OrderNumber := SQLDataReader.Item('OrderNumber');
             GlobalWorkToDo := SQLDataReader.Item('WorkToDo');
             PreComUpdateQueue.EquipmentNumber := Format(SQLDataReader.Item('EquipmentNumber'));
@@ -192,7 +194,8 @@ codeunit 50502 "PreCom Update Dispatcher"
             PreComUpdateQueue.RepairStatus := Format(SQLDataReader.Item('RepairStatus'));
             PreComUpdateQueue.ResponsibilityCenter := Format(SQLDataReader.Item('LocationCode'));
             PreComUpdateQueue.Description := SQLDataReader.Item('K2M_OrderTitle');
-            PreComUpdateQueue.ActualStartDate := Format(SQLDataReader.Item('AccountingDate'));
+            DT := SQLDataReader.Item('AccountingDate');
+            PreComUpdateQueue.ActualStartDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
             PreComUpdateQueue.Insert(false);
             Commit();
 
@@ -581,6 +584,7 @@ codeunit 50502 "PreCom Update Dispatcher"
         SQLCommand2: DotNet NewSqlCommand;
         SQLDataReader: DotNet NewSqlDataReader;
         IdText: Text[40];
+        DT: DateTime;
     begin
         if IsNull(SQLConnection) then
             SQLConnection := SQLConnection.SqlConnection();
@@ -603,8 +607,10 @@ codeunit 50502 "PreCom Update Dispatcher"
             PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
             PreComUpdateQueue."Table ID" := -140;
             PreComUpdateQueue.ERPReference := SQLDataReader.Item('ExternalId');
-            PreComUpdateQueue.PlannedStartDate := Format(SQLDataReader.Item('StartDate'));
-            PreComUpdateQueue.PlannedEndDate := Format(SQLDataReader.Item('EndDate'));
+            DT := SQLDataReader.Item('StartDate');
+            PreComUpdateQueue.PlannedStartDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
+            DT := SQLDataReader.Item('EndDate');
+            PreComUpdateQueue.PlannedEndDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
             PreComUpdateQueue.PrimaryResource := SQLDataReader.Item('ResourceExternalID');
             PreComUpdateQueue.Type := Format(SQLDataReader.Item('TimeTypeConverted'));
             PreComUpdateQueue.Insert(false);

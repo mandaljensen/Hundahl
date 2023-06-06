@@ -2303,10 +2303,11 @@ codeunit 50501 "PreCom Update Management"
     begin
         if locDateText = '' then
             Exit(0D);
-        Evaluate(Day, CopyStr(locDateText, 1, 2));
-        Evaluate(Month, CopyStr(locDateText, 4, 2));
-        Evaluate(Year, CopyStr(locDateText, 7, 2));
-        Year := Year + 2000;
+        Evaluate(Day, CopyStr(locDateText, 9, 2));
+        Evaluate(Month, CopyStr(locDateText, 6, 2));
+        Evaluate(Year, CopyStr(locDateText, 1, 4));
+        //Year := Year + 2000;
+        //1900-01-01
         // Evaluate(Day, CopyStr(locDateText, 9, 2));
         // Evaluate(Month, CopyStr(locDateText, 6, 2));
         // Evaluate(Year, CopyStr(locDateText, 1, 4));

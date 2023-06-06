@@ -109,6 +109,24 @@ page 50500 "PreCom Update Setup"
                         Message(StrSubstNo(ConnectionFailLbl, GetLastErrorText()));
                 end;
             }
+            action(TestConvertDate)
+            {
+                Caption = 'Test Convert Date';
+                ApplicationArea = All;
+                Image = TestReport;
+                Visible = false;
+
+                trigger OnAction()
+                var
+                    PrecomUpdateManagement: Codeunit "PreCom Update Management";
+                    DT: DateTime;
+                    ImportDate: Text[25];
+                begin
+                    DT := CreateDateTime(19000101D, 000000T);
+                    ImportDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
+                    PrecomUpdateManagement.ConvertDate(ImportDate)
+                end;
+            }
         }
     }
 }
