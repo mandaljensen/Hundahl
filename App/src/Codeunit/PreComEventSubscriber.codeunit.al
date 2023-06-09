@@ -268,7 +268,7 @@ codeunit 50500 "PreCom Event Subscriber"
         if not ServiceHeader.GET(Rec."Document Type", Rec."Document No.") then
             CLEAR(ServiceHeader);
 
-        if (RunTrigger) then begin
+        if RunTrigger then begin
             RecRef.GetTable(Rec);
             PreComUpdateManagement.OnInsert(RecRef);
         end;
@@ -295,8 +295,10 @@ codeunit 50500 "PreCom Event Subscriber"
         if not ServiceHeader.GET(Rec."Document Type", Rec."Document No.") then
             CLEAR(ServiceHeader);
 
-        RecRef.GetTable(Rec);
-        PreComUpdateManagement.OnUpdate(RecRef);
+        if RunTrigger then begin
+            RecRef.GetTable(Rec);
+            PreComUpdateManagement.OnUpdate(RecRef);
+        end;
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Service Line", 'OnAfterDeleteEvent', '', true, true)]
@@ -320,7 +322,7 @@ codeunit 50500 "PreCom Event Subscriber"
         if not ServiceHeader.GET(Rec."Document Type", Rec."Document No.") then
             CLEAR(ServiceHeader);
 
-        if (RunTrigger) then begin
+        if RunTrigger then begin
             PreComUpdateManagement.SetGlobalServiceLine(Rec);
             PreComUpdateQueue.Init();
             PreComUpdateQueue."Command Type" := PreComUpdateQueue."Command Type"::Delete;

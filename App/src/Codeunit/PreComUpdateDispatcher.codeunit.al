@@ -594,7 +594,7 @@ codeunit 50502 "PreCom Update Dispatcher"
         if IsNull(SQLCommand) then
             SQLCommand := SQLCommand.SqlCommand();
         SQLCommand.Connection(SQLConnection);
-        SQLCommand.CommandText('SELECT * FROM INT_Work_Time_OUT WHERE (IntegrationHandleDate is null) AND (IntegrationText = '''') AND (RegistrationType = ''-1'') Order By IntegrationCreateDate;');
+        SQLCommand.CommandText('SELECT * FROM INT_Work_Time_OUT WHERE (IntegrationHandleDate is null) AND (IntegrationText = '''') Order By IntegrationCreateDate;');
         SQLDataReader := SQLCommand.ExecuteReader();
         while SQLDataReader.Read() do begin
             IdText := Format(SQLDataReader.Item('Id'));
@@ -607,28 +607,42 @@ codeunit 50502 "PreCom Update Dispatcher"
             PreComUpdateQueue."Update Message ID" := PreComUpdateQueue."Update Message ID" + 1;
             PreComUpdateQueue."Table ID" := -140;
             PreComUpdateQueue.ERPReference := SQLDataReader.Item('ExternalId');
-            DT := SQLDataReader.Item('StartDate');
-            PreComUpdateQueue.PlannedStartDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
-            DT := SQLDataReader.Item('EndDate');
-            PreComUpdateQueue.PlannedEndDate := Format(DT2Date(DT), 0, '<Standard Format,9>');
+            PreComUpdateQueue.PlannedStartDate := Format(SQLDataReader.Item('StartDate'));
+            PreComUpdateQueue.PlannedEndDate := Format(SQLDataReader.Item('EndDate'));
             PreComUpdateQueue.PrimaryResource := SQLDataReader.Item('ResourceExternalID');
             PreComUpdateQueue.Type := Format(SQLDataReader.Item('TimeTypeConverted'));
+            PreComUpdateQueue.ReferenceType := SQLDataReader.Item('RegistrationType');
             PreComUpdateQueue.Insert(false);
             Commit();
 
-            if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
-                if IsNull(SQLConnection2) then
-                    SQLConnection2 := SQLConnection2.SqlConnection();
-                SQLConnection2.ConnectionString(ReturnConnString());
-                SQLConnection2.Open();
-                if IsNull(SQLCommand2) then
-                    SQLCommand2 := SQLCommand2.SqlCommand();
-                SQLCommand2.Connection(SQLConnection2);
-                SQLCommand2.CommandText('UPDATE INT_Work_Time_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
-                SQLCommand2.ExecuteNonQuery();
-                Clear(SQLCommand2);
-                SQLConnection2.Close();
-                Clear(SQLConnection2);
+            if PreComUpdateQueue.ReferenceType in ['-1', 'AB', 'AT', 'CI', 'CO'] then begin
+                if PreComUpdateManagement.Run(PreComUpdateQueue) then begin
+                    if IsNull(SQLConnection2) then
+                        SQLConnection2 := SQLConnection2.SqlConnection();
+                    SQLConnection2.ConnectionString(ReturnConnString());
+                    SQLConnection2.Open();
+                    if IsNull(SQLCommand2) then
+                        SQLCommand2 := SQLCommand2.SqlCommand();
+                    SQLCommand2.Connection(SQLConnection2);
+                    SQLCommand2.CommandText('UPDATE INT_Work_Time_OUT SET IntegrationHandleDate = ''' + Format(CurrentDateTime, 0, '<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes>') + ''' WHERE Id = ''' + IdText + '''');
+                    SQLCommand2.ExecuteNonQuery();
+                    Clear(SQLCommand2);
+                    SQLConnection2.Close();
+                    Clear(SQLConnection2);
+                end else begin
+                    if IsNull(SQLConnection2) then
+                        SQLConnection2 := SQLConnection2.SqlConnection();
+                    SQLConnection2.ConnectionString(ReturnConnString());
+                    SQLConnection2.Open();
+                    if IsNull(SQLCommand2) then
+                        SQLCommand2 := SQLCommand2.SqlCommand();
+                    SQLCommand2.Connection(SQLConnection2);
+                    SQLCommand2.CommandText('UPDATE INT_Work_Time_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
+                    SQLCommand2.ExecuteNonQuery();
+                    Clear(SQLCommand2);
+                    SQLConnection2.Close();
+                    Clear(SQLConnection2);
+                end;
             end else begin
                 if IsNull(SQLConnection2) then
                     SQLConnection2 := SQLConnection2.SqlConnection();
@@ -637,7 +651,7 @@ codeunit 50502 "PreCom Update Dispatcher"
                 if IsNull(SQLCommand2) then
                     SQLCommand2 := SQLCommand2.SqlCommand();
                 SQLCommand2.Connection(SQLConnection2);
-                SQLCommand2.CommandText('UPDATE INT_Work_Time_OUT SET IntegrationText = ''' + DelChr(GetLastErrorText, '=', '''') + ''' WHERE Id = ''' + IdText + '''');
+                SQLCommand2.CommandText('UPDATE INT_Work_Time_OUT SET IntegrationText = RegistrationType not handled!) WHERE Id = ''' + IdText + '''');
                 SQLCommand2.ExecuteNonQuery();
                 Clear(SQLCommand2);
                 SQLConnection2.Close();

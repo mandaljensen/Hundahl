@@ -914,6 +914,261 @@ codeunit 50501 "PreCom Update Management"
         end;
     end;
 
+    procedure WriteServiceOrderHistory(ServiceHeader: Record "Service Header"; Deleted: Boolean)
+    var
+        ServiceItemLine: Record "Service Item Line";
+        ServiceLine: Record "Service Line";
+        PreComUpdateQueue: Record "PreCom Update Queue";
+        PrecomRecordRef: RecordRef;
+        SQLConnection: DotNet NewSqlConnection;
+        SQLCommand: DotNet NewSqlCommand;
+        SQLParameter: DotNet NewSqlParameter;
+        SQLCommandType: DotNet CommandType;
+        SQLDBType: DotNet NewSqlDbType;
+        WorkToDo: Text;
+        StopWorkToDo: Boolean;
+    begin
+        WITH ServiceHeader DO begin
+            ServiceItemLine.Reset();
+            ServiceItemLine.SetRange("Document Type", "Document Type");
+            ServiceItemLine.SetRange("Document No.", "No.");
+            if not ServiceItemLine.FindFirst() then
+                Clear(ServiceItemLine);
+
+            if IsNull(SQLConnection) then
+                SQLConnection := SQLConnection.SqlConnection();
+            SQLConnection.ConnectionString(ReturnConnString());
+            SQLConnection.Open();
+            if IsNull(SQLCommand) then
+                SQLCommand := SQLCommand.SqlCommand();
+            SQLCommand.Connection(SQLConnection);
+            SQLCommand.CommandType(SQLCommandType.StoredProcedure);
+            SQLCommand.CommandText('WriteServiceOrderHistory');
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@OrderNo';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ''; // FIXME: Hvilket ordrenr.
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@OrderTitle';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := Description;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@CustomerNo';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Customer No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Address';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := Address;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@PostCode';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Post Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@City';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := City;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Customerphonenumber';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Phone No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Name';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := Name;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@EmailAddress';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "E-Mail";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@InvoiceCustomerNo';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Bill-to Customer No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Startdatetime';
+            SQLParameter.SqlDbType := SQLDBType.DateTime;
+            if "Starting Date" <> 0D then
+                SQLParameter.Value := ReturnLocalDateTime("Starting Date", "Starting Time") //FORMAT(CREATEDATETIME("Starting Date","Starting Time"),0,'<Year4>/<Month,2>/<Day,2> <Hours24>:<Minutes,2>:<Seconds,2>')
+            else
+                SQLParameter.Value := CREATEDATETIME(19600101D, 000000T); //FORMAT(CREATEDATETIME(010160D,000000T),0,'<Year4>-<Month,2>-<Day,2> <Hours24>:<Minutes,2>:<Seconds,2>');
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@PlannedDuration';
+            SQLParameter.SqlDbType := SQLDBType.Int;
+            SQLParameter.Value := 0;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ERPReference';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            StopWorkToDo := False;
+            //WorkToDo := Description;
+            ServiceLine.Reset();
+            ServiceLine.SetRange("Document Type", "Document Type");
+            ServiceLine.SetRange("Document No.", "No.");
+            if ServiceLine.FindSet() then
+                Repeat
+                    if ServiceLine.Type = ServiceLine.Type::" " then
+                        WorkToDo := WorkToDo + ' ' + ServiceLine.Description;
+
+                    if ServiceLine.Type > ServiceLine.Type::" " then
+                        StopWorkToDo := TRUE;
+                Until ((ServiceLine.Next() <= 0) OR (StopWorkToDo));
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@WorkToDo';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 1024;
+            SQLParameter.Value := COPYSTR(WorkToDo, 1, 1024);
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@EquipmentNo';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceItemLine."Service Item No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@OrderTypeID';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceHeader."Service Order Type";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@UserGroupID';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceHeader."Location Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Contactname';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceHeader."Contact Name";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Reference';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceHeader."Your Reference";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@RepairStatus';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceItemLine."Repair Status Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@DispatcherExternalId';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := ServiceHeader."Salesperson Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@PriorityId';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := FORMAT(ServiceHeader.Priority);
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@CauseCodeId';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Reason Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ReceivedDate';
+            SQLParameter.SqlDbType := SQLDBType.DateTime;
+            //SQLParameter.Size := 255;
+            SQLParameter.Value := ReturnLocalDateTime("Order Date", "Order Time");
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ResponsibilityCenter';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Responsibility Center";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Deleted';
+            SQLParameter.SqlDbType := SQLDBType.Bit;
+            if Deleted then
+                SQLParameter.Value := TRUE
+            else
+                SQLParameter.Value := False;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLCommand.ExecuteNonQuery();
+
+            Clear(SQLParameter);
+            Clear(SQLCommand);
+            SQLConnection.Close();
+            Clear(SQLConnection);
+
+            ServiceLine.Reset();
+            ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
+            ServiceLine.SetRange("Document No.", ServiceHeader."No.");
+            ServiceLine.SetRange(Type, ServiceLine.Type::Item);
+            ServiceLine.SetRange("Work Type Code", '');
+            if ServiceLine.FindSet() then
+                Repeat
+                    PrecomRecordRef.GetTable(ServiceLine);
+                    PreComUpdateQueue.Init();
+                    PreComUpdateQueue."Update Message ID" := 999999999;
+                    PreComUpdateQueue.RecordID := PrecomRecordRef.RECORDID;
+                    PreComUpdateQueue."Command Type" := PreComUpdateQueue."Command Type"::Insert;
+                    PreComUpdateQueue."Table ID" := PrecomRecordRef.NUMBER;
+                    WriteServiceInvLine(PreComUpdateQueue);
+                Until (ServiceLine.Next() <= 0);
+        end;
+    end;
+
     procedure WriteServiceInvLine(PreComUpdateQueue: Record "PreCom Update Queue")
     var
         ServiceLine: Record "Service Line";
@@ -1198,6 +1453,166 @@ codeunit 50501 "PreCom Update Management"
                 SQLConnection.Close();
                 Clear(SQLConnection);
             end;
+        end;
+    end;
+
+    procedure WriteServiceInvLineHistory(PreComUpdateQueue: Record "PreCom Update Queue")
+    var
+        ServiceLine: Record "Service Line";
+        ServiceLine2: Record "Service Line";
+        ServiceHeader: Record "Service Header";
+        PrecomOrderNumberLink: Record "Precom Order Number Link";
+        PrecomRecordRef: RecordRef;
+        FieldRef1: FieldRef;
+        FieldRef2: FieldRef;
+        FieldRef3: FieldRef;
+        SQLConnection: DotNet NewSqlConnection;
+        SQLCommand: DotNet NewSqlCommand;
+        SQLParameter: DotNet NewSqlParameter;
+        SQLCommandType: DotNet CommandType;
+        SQLDBType: DotNet NewSqlDbType;
+        TestDT: Text;
+        LongDescription: Text;
+    begin
+
+        PrecomRecordRef.Get(PreComUpdateQueue.RecordID);
+        FieldRef1 := PrecomRecordRef.Field(1);
+        FieldRef2 := PrecomRecordRef.Field(3);
+        FieldRef3 := PrecomRecordRef.Field(4);
+        ServiceLine.Get(FieldRef1.Value, FieldRef2.Value, FieldRef3.Value);
+        if not PrecomOrderNumberLink.Get(ServiceLine."Document No.") then
+            Clear(PrecomOrderNumberLink);
+        with ServiceLine do begin
+            if IsNull(SQLConnection) then
+                SQLConnection := SQLConnection.SqlConnection();
+
+            SQLConnection.ConnectionString(ReturnConnString());
+            SQLConnection.Open();
+
+            if IsNull(SQLCommand) then
+                SQLCommand := SQLCommand.SqlCommand();
+            SQLCommand.Connection(SQLConnection);
+            SQLCommand.CommandType(SQLCommandType.StoredProcedure);
+            SQLCommand.CommandText('WriteArticleInHistory');
+
+            ServiceHeader.Get("Document Type", "Document No.");
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@OrderNumber';
+            SQLParameter.SqlDbType := SQLDBType.Int;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := PrecomOrderNumberLink."Precom No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ERPReference';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Document No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ArticleNumber';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "No.";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            LongDescription := Description;
+            ServiceLine2.Reset();
+            ServiceLine2.SetRange("Document Type", ServiceLine."Document Type");
+            ServiceLine2.SetRange("Document No.", ServiceLine."Document No.");
+            ServiceLine2.SetRange("Attached to Line No.", ServiceLine."Line No.");
+            if ServiceLine2.FindSet() then
+                Repeat
+                    LongDescription += ' ' + ServiceLine2.Description;
+                Until (ServiceLine2.Next() <= 0);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Description';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := LongDescription;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Quantity';
+            SQLParameter.SqlDbType := SQLDBType.Float;
+            SQLParameter.Value := Quantity;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@UOM';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Unit of Measure Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Price';
+            SQLParameter.SqlDbType := SQLDBType.Float;
+            SQLParameter.Value := "Unit Price";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@RecordIDERP';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := Format("Line No.");
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@RecordID';
+            SQLParameter.SqlDbType := SQLDBType.Int;
+            SQLParameter.Value := "Precom Record ID";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Currency';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Currency Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@ResourceExternalID';
+            SQLParameter.SqlDbType := SQLDBType.NVarChar;
+            SQLParameter.Size := 255;
+            SQLParameter.Value := "Location Code";
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@CreatedDateTime';
+            SQLParameter.SqlDbType := SQLDBType.DateTime;
+            TestDT := FORMAT("Planned Delivery Date", 0, '<Year4>-<Month,2>-<Day,2>') + ' 00:00:00';
+            SQLParameter.Value := FORMAT("Planned Delivery Date", 0, '<Year4>-<Month,2>-<Day,2>') + ' 00:00:00';
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Picked';
+            SQLParameter.SqlDbType := SQLDBType.Bit;
+            if Quantity = "Quantity Shipped" then
+                SQLParameter.Value := true
+            else
+                SQLParameter.Value := False;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLParameter := SQLParameter.SqlParameter();
+            SQLParameter.ParameterName := '@Deleted';
+            SQLParameter.SqlDbType := SQLDBType.Bit;
+
+            if PreComUpdateQueue."Command Type" = PreComUpdateQueue."Command Type"::Delete then
+                SQLParameter.Value := true
+            else
+                SQLParameter.Value := false;
+            SQLCommand.Parameters.Add(SQLParameter);
+
+            SQLCommand.ExecuteNonQuery();
+
+            Clear(SQLParameter);
+            Clear(SQLCommand);
+            SQLConnection.Close();
+            Clear(SQLConnection);
         end;
     end;
 
@@ -2077,14 +2492,18 @@ codeunit 50501 "PreCom Update Management"
         TimeRegJournalLine.Init();
         TimeRegJournalLine.Validate("Time Reg. Journal Batch", PreComUpdateSetup."Time Reg. Journal");
         TimeRegJournalLine.Validate("Line No.", LineNo);
-        TimeRegJournalLine.Validate(Date, ConvertDate(PreComUpdateQueue.PlannedStartDate));
+        TimeRegJournalLine.Validate(Date, DT2Date(StartDateTime));
         TimeRegJournalLine.Validate("Start Time", DT2TIME(StartDateTime));
         TimeRegJournalLine.Validate("End Time", DT2TIME(endDateTime));
         TimeRegJournalLine.Validate("Resource Code", PreComUpdateQueue.PrimaryResource);
         TimeRegJournalLine.Validate("Service Order", PreComUpdateQueue.ERPReference);
         TimeRegJournalLine.Validate("Work Type Code", PreComUpdateQueue.Type);
         //TimeRegJournalLine.Validate("Entry Only", TRUE);
-        TimeRegJournalLine.Insert(TRUE);
+        if UpperCase(PreComUpdateQueue.ReferenceType) = 'CI' then
+            TimeRegJournalLine.Validate("Time Reg. Type", TimeRegJournalLine."Time Reg. Type"::Arrival);
+        if UpperCase(PreComUpdateQueue.ReferenceType) = 'CO' then
+            TimeRegJournalLine.Validate("Time Reg. Type", TimeRegJournalLine."Time Reg. Type"::Departure);
+        TimeRegJournalLine.Insert(true);
     end;
 
     procedure TransferItemInventory()
