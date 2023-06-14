@@ -523,6 +523,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Precom Act. Service Items - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 699980068 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Precom Send Service Order History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report PrecomSendHistory - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 1493829737 - Action 2778715907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 390384513">
           <source>Send Service Order to Precom</source>
           <note from="Developer" annotates="general" priority="2"></note>
