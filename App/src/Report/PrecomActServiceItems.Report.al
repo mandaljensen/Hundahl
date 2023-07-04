@@ -7,7 +7,7 @@ report 50006 "Precom Act. Service Items"
 
     dataset
     {
-        dataitem(ServiceItem; "Service Item")
+  /*       dataitem(ServiceItem; "Service Item")
         {
             RequestFilterFields = "No.", Closed;
 
@@ -20,14 +20,14 @@ report 50006 "Precom Act. Service Items"
                 RecRef.GetTable(ServiceItem);
                 PrecomUpdateManagement.OnInsert(RecRef);
             end;
-        }
+        } */
     }
 
-    /*     trigger OnPreReport()
+        trigger OnPreReport()
         var
             PrecomUpdateDispatcher: Codeunit "PreCom Update Dispatcher";
         begin
             PrecomUpdateDispatcher.Run();
             CurrReport.Quit();
-        end; */
+        end;
 }

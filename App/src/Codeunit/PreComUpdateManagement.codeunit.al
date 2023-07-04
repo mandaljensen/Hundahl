@@ -1552,7 +1552,7 @@ codeunit 50501 "PreCom Update Management"
             SQLParameter := SQLParameter.SqlParameter();
             SQLParameter.ParameterName := '@RecordID';
             SQLParameter.SqlDbType := SQLDBType.Int;
-            SQLParameter.Value := '';
+            SQLParameter.Value := 0;
             SQLCommand.Parameters.Add(SQLParameter);
 
             SQLParameter := SQLParameter.SqlParameter();
@@ -2930,7 +2930,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
-        ServiceLine.Description := '..';
+        ServiceLine.Description := '';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -2950,7 +2950,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
-        ServiceLine.Description := '..';
+        ServiceLine.Description := '';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -2970,7 +2970,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
-        ServiceLine.Description := '..';
+        ServiceLine.Description := '';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();
@@ -3000,7 +3000,7 @@ codeunit 50501 "PreCom Update Management"
         LineNo += 10000;
         ServiceLine.Type := ServiceLine.Type::" ";
         ServiceLine."Service Item Line No." := ServiceItemLine."Line No.";
-        ServiceLine.Description := '..';
+        ServiceLine.Description := '';
         ServiceLine.Insert(true);
 
         TempSaveServiceLine.Reset();

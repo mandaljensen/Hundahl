@@ -1,4 +1,4 @@
-report 50500 PrecomSendHistory
+report 50009 "PrecomSendHistory"
 {
     Caption = 'Precom Send Service Order History';
     ProcessingOnly = true;
