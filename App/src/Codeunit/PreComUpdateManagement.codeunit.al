@@ -1874,13 +1874,8 @@ codeunit 50501 "PreCom Update Management"
                     if ServiceHeader."Bill-to Customer No." <> PreComUpdateQueue.BillingNumber then
                         ServiceHeader.Validate("Bill-to Customer No.", PreComUpdateQueue.BillingNumber);
 
-                //    if PreComUpdateQueue.PrimaryResource <> '' then
-                //      if STRLEN(PreComUpdateQueue.PrimaryResource) <= 10 then
-                //        if Location.Get(PreComUpdateQueue.PrimaryResource) then
-                //          ServiceHeader.Validate("Location Code",PreComUpdateQueue.PrimaryResource);
-
                 ImportDate := ConvertDate(PreComUpdateQueue.ActualStartDate);
-                if ImportDate <> ServiceHeader."Posting Date" then begin
+                if (ImportDate <> ServiceHeader."Posting Date") and (ImportDate <> 19000101D) then begin
                     ServiceHeader.SetHideValidationDialog(true);
                     ServiceHeader.Validate("Posting Date", ImportDate);
                 end;
@@ -1905,23 +1900,12 @@ codeunit 50501 "PreCom Update Management"
                         ServiceHeader.Validate("VAT Bus. Posting Group", Customer."VAT Bus. Posting Group");
                 end;
 
-                /*
-                ImportDate := ConvertDate(PreComUpdateQueue.PlannedendDate);
-                if ImportDate <> 01011900D then begin
-                  if ImportDate >= ServiceHeader."Starting Date" then
-                    ServiceHeader.Validate("Finishing Date",ImportDate)
-                  else
-                    ServiceHeader.Validate("Finishing Date",ServiceHeader."Starting Date");
-                end;
-                */
-
                 ServiceItemLine.Reset();
                 ServiceItemLine.SetRange("Document Type", ServiceHeader."Document Type");
                 ServiceItemLine.SetRange("Document No.", ServiceHeader."No.");
                 if not ServiceItemLine.FindFirst() then
                     Clear(ServiceItemLine);
 
-                //DescriptionText := PreComUpdateQueue.WorkToDo;
                 DescriptionText := CopyStr(GlobalWorkToDo, 1, 1024);
                 SplitStringToLines(DescriptionText);
                 LineNo := RemoveWorkToDoLines(ServiceHeader);
@@ -1929,10 +1913,6 @@ codeunit 50501 "PreCom Update Management"
                 i := 1;
                 FOR i := 1 TO 50 DO
                     if DescriptionLines[i] <> '' then begin
-                        //        if i = 1 then begin
-                        //          ServiceHeader.Validate(Description,DescriptionLines[i]);
-                        //          ServiceHeader.MODifY(TRUE);
-                        //        end else begin
                         ServiceLine.Reset();
                         ServiceLine.HideShowDialog(true);
                         ServiceLine.Init();
@@ -1944,14 +1924,7 @@ codeunit 50501 "PreCom Update Management"
                         ServiceLine.Validate(Type, ServiceLine.Type::" ");
                         ServiceLine.Description := DescriptionLines[i];
                         ServiceLine.Insert(true);
-                        //        end;
                     end;
-
-                //    if STRLEN(PreComUpdateQueue.WorkToDo) > 50 then
-                //      DescriptionText := COPYSTR(PreComUpdateQueue.WorkToDo,1,50)
-                //    else
-                //      DescriptionText := PreComUpdateQueue.WorkToDo;
-                //    ServiceHeader.Validate(Description,DescriptionText);
 
                 ServiceItemLine.Reset();
 
@@ -2123,28 +2096,6 @@ codeunit 50501 "PreCom Update Management"
 
                 SortServiceLines(ServiceHeader);
 
-                if StandardText.Get(ServiceHeader."Salesperson Code") then begin
-                    ServiceLine.Reset();
-                    ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
-                    ServiceLine.SetRange("Document No.", ServiceHeader."No.");
-                    if ServiceLine.FindLast() then
-                        LineNo := ServiceLine."Line No." + 10000
-                    else
-                        LineNo := 10000;
-                    ServiceLine.Reset();
-                    ServiceLine.Init();
-                    ServiceLine.Validate("Document Type", ServiceHeader."Document Type");
-                    ServiceLine.Validate("Document No.", ServiceHeader."No.");
-                    ServiceLine.Validate("Line No.", LineNo);
-                    ServiceLine.Validate("Service Item Line No.", ServiceItemLine."Line No.");
-                    ServiceLine.Validate(Type, ServiceLine.Type::" ");
-                    ServiceLine.Validate("No.", ServiceHeader."Salesperson Code");
-                    ServiceLine.Insert(TRUE);
-
-                    if TransferExtendedText.ServCheckifAnyExtText(ServiceLine, False) then
-                        TransferExtendedText.InsertServExtText(ServiceLine);
-                end;
-
                 if ServiceItemLine."Service Item No." <> '' then begin
                     RepairStatus.Reset();
                     RepairStatus.SetRange(Finished, TRUE);
@@ -2161,28 +2112,6 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.MODifY(TRUE);
 
                 SortServiceLines(ServiceHeader);
-
-                if StandardText.Get(ServiceHeader."Salesperson Code") then begin
-                    ServiceLine.Reset();
-                    ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
-                    ServiceLine.SetRange("Document No.", ServiceHeader."No.");
-                    if ServiceLine.FindLast() then
-                        LineNo := ServiceLine."Line No." + 10000
-                    else
-                        LineNo := 10000;
-                    ServiceLine.Reset();
-                    ServiceLine.Init();
-                    ServiceLine.Validate("Document Type", ServiceHeader."Document Type");
-                    ServiceLine.Validate("Document No.", ServiceHeader."No.");
-                    ServiceLine.Validate("Line No.", LineNo);
-                    ServiceLine.Validate("Service Item Line No.", ServiceItemLine."Line No.");
-                    ServiceLine.Validate(Type, ServiceLine.Type::" ");
-                    ServiceLine.Validate("No.", ServiceHeader."Salesperson Code");
-                    ServiceLine.Insert(TRUE);
-
-                    if TransferExtendedText.ServCheckifAnyExtText(ServiceLine, False) then
-                        TransferExtendedText.InsertServExtText(ServiceLine);
-                end;
             end;
         end;
     end;
