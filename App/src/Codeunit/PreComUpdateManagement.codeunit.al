@@ -2832,6 +2832,13 @@ codeunit 50501 "PreCom Update Management"
         ServiceLine.Reset();
         ServiceLine.SetRange("Document Type", pServiceHeader."Document Type");
         ServiceLine.SetRange("Document No.", pServiceHeader."No.");
+        ServiceLine.SetFilter("Quantity Shipped", '<>%1', 0);
+        if not ServiceLine.IsEmpty() then
+            exit;
+
+        ServiceLine.Reset();
+        ServiceLine.SetRange("Document Type", pServiceHeader."Document Type");
+        ServiceLine.SetRange("Document No.", pServiceHeader."No.");
         if ServiceLine.FindSet(False, False) then
             repeat
                 TempSaveServiceLine := ServiceLine;
