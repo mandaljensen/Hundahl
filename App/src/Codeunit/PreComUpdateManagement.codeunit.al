@@ -2094,7 +2094,7 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.Validate(Status, ServiceHeader.Status::Finished);
                 ServiceHeader.Modify(true);
 
-                SortServiceLines(ServiceHeader);
+                //SortServiceLines(ServiceHeader);
 
                 if ServiceItemLine."Service Item No." <> '' then begin
                     RepairStatus.Reset();
@@ -2111,7 +2111,7 @@ codeunit 50501 "PreCom Update Management"
                 ServiceHeader.Validate(Status, ServiceHeader.Status::Finished);
                 ServiceHeader.MODifY(TRUE);
 
-                SortServiceLines(ServiceHeader);
+                //SortServiceLines(ServiceHeader);
             end;
         end;
     end;
