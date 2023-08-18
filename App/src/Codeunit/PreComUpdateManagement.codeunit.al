@@ -372,7 +372,7 @@ codeunit 50501 "PreCom Update Management"
             i := 1;
             ItemCrossReference.Reset();
             ItemCrossReference.SetRange("Item No.", Item."No.");
-            ItemCrossReference.SetFilter("Cross-Reference Type", '%1|%2', ItemCrossReference."Cross-Reference Type"::"Bar Code");
+            ItemCrossReference.SetRange("Cross-Reference Type", ItemCrossReference."Cross-Reference Type"::"Bar Code");
             if ItemCrossReference.FindSet(False, False) then
                 repeat
                     Barcodes[i] := ItemCrossReference."Cross-Reference No.";
