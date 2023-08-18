@@ -531,6 +531,7 @@ codeunit 50502 "PreCom Update Dispatcher"
                 PreComUpdateQueue.Description := Format(SQLDataReader.Item('CostDescription'));
                 PreComUpdateQueue.Quantity := ConvertToDecimal(Format(SQLDataReader.Item('Quantity')));
                 PreComUpdateQueue.Price := ConvertToDecimal(Format(SQLDataReader.Item('Price')));
+                PreComUpdateQueue."PreCom Record ID" := ConvertToInteger(SQLDataReader.Item('RecordId'));
                 PreComUpdateQueue.Insert(false);
                 Commit();
 
@@ -584,7 +585,6 @@ codeunit 50502 "PreCom Update Dispatcher"
         SQLCommand2: DotNet NewSqlCommand;
         SQLDataReader: DotNet NewSqlDataReader;
         IdText: Text[40];
-        DT: DateTime;
     begin
         if IsNull(SQLConnection) then
             SQLConnection := SQLConnection.SqlConnection();

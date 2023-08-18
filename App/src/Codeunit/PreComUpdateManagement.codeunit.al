@@ -272,7 +272,7 @@ codeunit 50501 "PreCom Update Management"
         SQLParameter: DotNet NewSqlParameter;
         SQLCommandType: DotNet CommandType;
         SQLDBType: DotNet NewSqlDbType;
-        Barcodes: array[10] of Text[50];
+        Barcodes: array[100] of Text[50];
         i: Integer;
 
     begin
@@ -372,7 +372,7 @@ codeunit 50501 "PreCom Update Management"
             i := 1;
             ItemCrossReference.Reset();
             ItemCrossReference.SetRange("Item No.", Item."No.");
-            ItemCrossReference.SetFilter("Cross-Reference Type", '%1|%2', ItemCrossReference."Cross-Reference Type"::Vendor, ItemCrossReference."Cross-Reference Type"::"Bar Code");
+            ItemCrossReference.SetFilter("Cross-Reference Type", '%1|%2', ItemCrossReference."Cross-Reference Type"::"Bar Code");
             if ItemCrossReference.FindSet(False, False) then
                 repeat
                     Barcodes[i] := ItemCrossReference."Cross-Reference No.";
@@ -395,7 +395,7 @@ codeunit 50501 "PreCom Update Management"
             SQLParameter.ParameterName := '@Deleted';
             SQLParameter.SqlDbType := SQLDBType.Bit;
             if PreComUpdateQueue."Command Type" = PreComUpdateQueue."Command Type"::Delete then
-                SQLParameter.Value := TRUE
+                SQLParameter.Value := true
             else
                 SQLParameter.Value := False;
             SQLCommand.Parameters.Add(SQLParameter);
@@ -2052,12 +2052,8 @@ codeunit 50501 "PreCom Update Management"
         //ReasonCode: Record "Reason Code";
         PreComUpdateSetup: Record "PreCom Update Setup";
         //TempNameValueBuffer: Record "Name/Value Buffer" temporary;
-        ServiceLine: Record "Service Line";
-        StandardText: Record "Standard Text";
         //FileManagement: Codeunit "File Management";
-        TransferExtendedText: Codeunit "Transfer Extended Text";
         HourReading: Integer;
-        LineNo: Integer;
     //ServiceHeaderChanged: Boolean;
     begin
         //ServiceHeaderChanged := False;
@@ -2250,7 +2246,6 @@ codeunit 50501 "PreCom Update Management"
                 if PreComUpdateQueue.Quantity < 0 then begin
                     if PreComUpdateQueue."PreCom Record ID" <> 0 then begin
                         ServiceLine.Reset();
-                        ;
                         ServiceLine.SetRange("Precom Record ID", PreComUpdateQueue."PreCom Record ID");
                         ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
                         ServiceLine.SetRange("Document No.", ServiceHeader."No.");
@@ -2329,29 +2324,68 @@ codeunit 50501 "PreCom Update Management"
         ServiceHeader: Record "Service Header";
         ServiceItemLine: Record "Service Item Line";
         ServiceLine: Record "Service Line";
+        ServiceLine2: Record "Service Line";
         LineNo: Integer;
         NoServiceItemLineErr: Label 'There is no Service Item Line on the Service Order!';
         NegativeQtyErr: Label 'No line exist where negative quantity can be deducted!';
+        QuantityRemaining: Decimal;
+        NegativeQtyHandled: Boolean;
     begin
         if ServiceHeader.Get(ServiceHeader."Document Type"::Order, PreComUpdateQueue.ERPReference) then begin
-            ServiceHeader.MODifY(TRUE);
+            //ServiceHeader.MODifY(TRUE);
+            NegativeQtyHandled := false;
 
             ServiceItemLine.Reset();
             ServiceItemLine.SetRange("Document Type", ServiceHeader."Document Type");
             ServiceItemLine.SetRange("Document No.", ServiceHeader."No.");
             if ServiceItemLine.FindFirst() then begin
                 if PreComUpdateQueue.Quantity < 0 then begin
-                    ServiceLine.Reset();
-                    ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
-                    ServiceLine.SetRange("Document No.", ServiceHeader."No.");
-                    ServiceLine.SetRange(Type, ServiceLine.Type::Cost);
-                    ServiceLine.SetRange("No.", PreComUpdateQueue.ArticleNumber);
-                    ServiceLine.SETFILTER(Quantity, '>=%1', -PreComUpdateQueue.Quantity);
-                    if ServiceLine.FindFirst() then begin
-                        ServiceLine.Validate(Quantity, ServiceLine.Quantity + PreComUpdateQueue.Quantity);
-                        ServiceLine.Modify(true);
-                    end else
-                        ERROR(NegativeQtyErr);
+                    if PreComUpdateQueue."PreCom Record ID" <> 0 then begin
+                        ServiceLine.Reset();
+                        ServiceLine.SetRange("Precom Record ID", PreComUpdateQueue."PreCom Record ID");
+                        ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
+                        ServiceLine.SetRange("Document No.", ServiceHeader."No.");
+                        if ServiceLine.FindFirst() then begin
+                            if ServiceLine.Quantity + PreComUpdateQueue.Quantity <> 0 then begin
+                                ServiceLine.Validate(Quantity, ServiceLine.Quantity + PreComUpdateQueue.Quantity);
+                                ServiceLine.Modify(true);
+                            end else
+                                ServiceLine.Delete(true);
+
+                            NegativeQtyHandled := true;
+                        end;
+                    end;
+                    if (PreComUpdateQueue."PreCom Record ID" = 0) or (not NegativeQtyHandled) then begin
+                        ServiceLine.Reset();
+                        ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
+                        ServiceLine.SetRange("Document No.", ServiceHeader."No.");
+                        ServiceLine.SetRange(Type, ServiceLine.Type::Cost);
+                        ServiceLine.SetRange("No.", PreComUpdateQueue.ArticleNumber);
+                        ServiceLine.SETFILTER(Quantity, '>=%1', -PreComUpdateQueue.Quantity);
+                        if ServiceLine.FindFirst() then begin
+                            ServiceLine.Validate(Quantity, ServiceLine.Quantity + PreComUpdateQueue.Quantity);
+                            ServiceLine.Modify(TRUE);
+                        end else begin
+                            QuantityRemaining := -PreComUpdateQueue.Quantity;
+                            ServiceLine.SetRange(Quantity);
+                            ServiceLine.CalcSums(Quantity);
+                            if ServiceLine.Quantity >= QuantityRemaining then begin
+                                if ServiceLine.FindSet() then
+                                    Repeat
+                                        if QuantityRemaining >= ServiceLine.Quantity then begin
+                                            QuantityRemaining -= ServiceLine.Quantity;
+                                            ServiceLine2.Get(ServiceLine."Document Type", ServiceLine."Document No.", ServiceLine."Line No.");
+                                            ServiceLine2.Delete(true);
+                                        end else begin
+                                            ServiceLine.Validate(Quantity, QuantityRemaining);
+                                            ServiceLine.Modify(TRUE);
+                                            QuantityRemaining := 0;
+                                        end;
+                                    Until ((ServiceLine.Next() <= 0) OR (QuantityRemaining <= 0));
+                            end else
+                                ERROR(NegativeQtyErr);
+                        end;
+                    end;
                 end else begin
                     ServiceLine.Reset();
                     ServiceLine.SetRange("Document Type", ServiceHeader."Document Type");
@@ -2374,6 +2408,7 @@ codeunit 50501 "PreCom Update Management"
                     ServiceLine.Validate(Quantity, PreComUpdateQueue.Quantity);
                     ServiceLine.Validate("Unit Price", PreComUpdateQueue.Price);
                     ServiceLine.Validate("Precom Line Type", ServiceLine."Precom Line Type"::Cost);
+                    ServiceLine.Validate("Precom Record ID", PreComUpdateQueue."PreCom Record ID");
                     ServiceLine.Insert(False);
                 end;
             end else

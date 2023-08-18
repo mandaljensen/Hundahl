@@ -115,6 +115,7 @@ page 50500 "PreCom Update Setup"
                 ApplicationArea = All;
                 Image = TestReport;
                 Visible = false;
+                ToolTip = 'Executes the Test Convert Date action.';
 
                 trigger OnAction()
                 var

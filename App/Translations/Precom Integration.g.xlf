@@ -483,6 +483,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action Process - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3441714404 - Action 1847890159 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Executes the Test Convert Date action.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page PreCom Update Setup - Action TestConvertDate - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3441714404 - Action 1847890159 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Test Convert Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
