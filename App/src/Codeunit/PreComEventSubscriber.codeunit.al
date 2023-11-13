@@ -330,6 +330,26 @@ codeunit 50500 "PreCom Event Subscriber"
         end;
     end;
 
+    [EventSubscriber(ObjectType::Table, database::"Service Header", 'OnAfterDeleteEvent', '', true, true)]
+    local procedure DeleteServiceHeader(var Rec: Record "Service Header"; RunTrigger: Boolean)
+    var
+        PrecomUpdateSetup: Record "PreCom Update Setup";
+        PreComUpdateManagement: Codeunit "PreCom Update Management";
+        RecRef: RecordRef;
+    begin
+        PrecomUpdateSetup.Get();
+        if not PrecomUpdateSetup."Use Precom" then
+            exit;
+
+        if Rec.IsTemporary then
+            exit;
+
+        if RunTrigger then begin
+            RecRef.GetTable(Rec);
+            PreComUpdateManagement.OnDelete(RecRef);
+        end;
+    end;
+
     /*
     [EventSubscriber(ObjectType::Table, database::"Service Header", 'OnAfterModifyEvent', '', true, true)]
     local procedure ModifyServiceHeader(var Rec: Record "Service Header"; var xRec: Record "Service Header"; RunTrigger: Boolean)

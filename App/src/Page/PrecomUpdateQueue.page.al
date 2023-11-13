@@ -41,6 +41,15 @@ page 50501 "Precom Update Queue"
 
     actions
     {
+        /*         area(Processing)
+                {
+                    action(ProcessQueue)
+                    {
+                        Caption = 'Process Queue';
+                        ApplicationArea = All;
+                        RunObject = codeunit "PreCom Update Dispatcher";
+                    }
+                } */
     }
 }
 
