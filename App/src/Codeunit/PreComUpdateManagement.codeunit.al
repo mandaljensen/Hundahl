@@ -3062,6 +3062,8 @@ codeunit 50501 "PreCom Update Management"
         lTimeDiff: Integer;
         lSign: Text[30];
     begin
+        if LocalTime = 0T then
+            LocalTime := 080000T;
         Evaluate(lLocalTime, Format(LocalTime));
         lDateTimeTxt := Format(CreateDateTime(LocalDate, lLocalTime), 0, 9);
         lTimeTxt := CopyStr(lDateTimeTxt, StrPos(lDateTimeTxt, 'T') + 1);
